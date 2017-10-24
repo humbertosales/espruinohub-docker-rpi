@@ -17,7 +17,10 @@ RUN ln /usr/local/bin/node /usr/bin/node
 
 RUN git clone https://github.com/espruino/EspruinoHub /var/espruinohub
 
+
 WORKDIR /var/espruinohub
+
+RUN npm install --no-optional
 
 CMD /var/espruinohub/start.sh
 
