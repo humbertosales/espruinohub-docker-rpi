@@ -4,7 +4,7 @@ MAINTAINER Humberto Sales
 
 # Install dependencies
 RUN apt-get -yqq update && \
-    apt-get -yqq --no-install-recommends install build-essential python-rpi.gpio bluetooth bluez libbluetooth-dev libudev-dev
+    apt-get -yqq --no-install-recommends install git build-essential python-rpi.gpio bluetooth bluez libbluetooth-dev libudev-dev
 
 #    apt-get -yqq autoremove && \
 #    apt-get -yqq clean && \
