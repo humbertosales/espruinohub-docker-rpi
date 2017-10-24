@@ -7,5 +7,7 @@ services:
             - /dev:/dev
             - /var/run/dbus:/var/run/dbus
             - /sys/class/bluetooth:/sys/class/bluetooth
+            - /var/lib/bluetooth:/var/lib/bluetooth 
         restart: "always"
+        privileged: true
         
