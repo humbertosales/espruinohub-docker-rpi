@@ -1,0 +1,9 @@
+version: '2'
+services:
+    espruinohub:
+        image: humbertosales/espruinohub-docker-rpi:1.0.0
+        network_mode: "host"
+        volumes:
+            - /dev:/dev
+            - /var/run/dbus:/var/run/dbus
+            - /sys/class/bluetooth:/sys/class/bluetoot
