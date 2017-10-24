@@ -15,7 +15,7 @@ RUN ln /usr/local/bin/node /usr/bin/node
 #    sudo npm cache clean
 
 
-git clone https://github.com/espruino/EspruinoHub /var/espruinohub
+RUN git clone https://github.com/espruino/EspruinoHub /var/espruinohub
 
 WORKDIR /var/espruinohub
 
