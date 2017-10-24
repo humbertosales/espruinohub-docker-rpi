@@ -6,16 +6,12 @@ USER root
 
 # Install dependencies
 RUN apt-get -yqq update && \
-    apt-get -yqq --no-install-recommends install git build-essential python-rpi.gpio bluetooth bluez libbluetooth-dev libudev-dev bluez-tools
-
-#    apt-get -yqq autoremove && \
-#    apt-get -yqq clean && \
-#    rm -rf /var/lib/apt/lists/* /var/cache/* /tmp/* /var/tmp/*
-
+    apt-get -yqq --no-install-recommends install git build-essential python-rpi.gpio bluetooth bluez libbluetooth-dev libudev-dev bluez-tools rfkill && \
+    apt-get -yqq autoremove && \
+    apt-get -yqq clean && \
+    rm -rf /var/lib/apt/lists/* /var/cache/* /tmp/* /var/tmp/*
 
 RUN ln /usr/local/bin/node /usr/bin/node
-
-#    sudo npm cache clean
 
 RUN usermod -a -G bluetooth root && \
     setcap cap_net_raw+eip /usr/local/bin/node
@@ -25,7 +21,13 @@ RUN git clone https://github.com/espruino/EspruinoHub /var/espruinohub
 
 WORKDIR /var/espruinohub
 
-RUN npm install
+RUN npm install && \
+    npm cache clean
+	
 
-CMD /var/espruinohub/start.sh
+#Run other commands for start BLE...
+COPY src/cmd.sh /var/espruinohub/cmd.sh
+	
+
+CMD /var/espruinohub/cmd.sh
 
