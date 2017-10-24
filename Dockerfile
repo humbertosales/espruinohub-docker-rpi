@@ -19,7 +19,5 @@ RUN git clone https://github.com/espruino/EspruinoHub /var/espruinohub
 
 WORKDIR /var/espruinohub
 
-EXPOSE 8080
-
-CMD espruino-server
+CMD /var/espruinohub/start.sh
 
