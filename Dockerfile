@@ -17,10 +17,9 @@ RUN ln /usr/local/bin/node /usr/bin/node
 
 #    sudo npm cache clean
 
-RUN usermod -a -G bluetooth espruino && \
+RUN usermod -a -G bluetooth root && \
     setcap cap_net_raw+eip /usr/local/bin/node
 
-USER espruino
 	
 RUN git clone https://github.com/espruino/EspruinoHub /var/espruinohub
 
