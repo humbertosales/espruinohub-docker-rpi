@@ -20,7 +20,7 @@ RUN git clone https://github.com/espruino/EspruinoHub /var/espruinohub
 
 WORKDIR /var/espruinohub
 
-RUN npm install --no-optional
+RUN npm install
 
 CMD /var/espruinohub/start.sh
 

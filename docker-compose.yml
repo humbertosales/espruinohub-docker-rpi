@@ -7,3 +7,4 @@ services:
             - /dev:/dev
             - /var/run/dbus:/var/run/dbus
             - /sys/class/bluetooth:/sys/class/bluetooth
+        restart: "on_failure"
