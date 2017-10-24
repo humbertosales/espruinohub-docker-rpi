@@ -27,7 +27,7 @@ RUN npm install && \
 
 #Run other commands for start BLE...
 COPY src/cmd.sh /var/espruinohub/cmd.sh
-	
+RUN chmod +x /var/espruinohub/cmd.sh
 
 CMD /var/espruinohub/cmd.sh
 

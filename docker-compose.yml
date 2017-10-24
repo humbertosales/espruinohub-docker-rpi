@@ -1,7 +1,7 @@
 version: '2'
 services:
     espruinohub:
-        image: humbertosales/espruinohub-docker-rpi:1.0.0
+        image: humbertosales/espruinohub-docker-rpi:latest
         network_mode: "host"
         restart: "always"
         privileged: true
