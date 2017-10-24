@@ -3,4 +3,6 @@ services:
     espruinohub:
         image: humbertosales/espruinohub-docker-rpi:1.0.0
         network_mode: "host"
-        restart: "always"        
+        restart: "always"
+        privileged: true
+        
