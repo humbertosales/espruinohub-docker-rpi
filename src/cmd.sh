@@ -16,4 +16,4 @@ hciconfig hci0 reset
 hciconfig dev
 
 #call start espruinoHUB
-start.sh
+./start.sh
