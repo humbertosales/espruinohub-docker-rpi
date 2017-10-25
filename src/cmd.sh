@@ -12,7 +12,7 @@ rfkill list
 rfkill unblock bluetooth
 # reset the adapter quick
 hciconfig hci0 reset
-list devices and status
+#list devices and status
 hciconfig dev
 
 #call start espruinoHUB
