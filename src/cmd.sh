@@ -16,4 +16,8 @@ hciconfig hci0 reset
 hciconfig dev
 
 #call start espruinoHUB
-./start.sh
+while true
+do
+	echo "Executing start.sh infinite.... Press [CTRL+C] to stop..."
+	./start.sh
+done
