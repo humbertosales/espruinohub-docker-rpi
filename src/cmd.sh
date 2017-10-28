@@ -1,23 +1,53 @@
 #!/bin/bash
 
-#WORKAROUND TO LISTEN BLUETOOTH INSIDE CONTAINER DOCKER.
-#Ideas:
-#https://github.com/rtruxal
-#https://github.com/moby/moby/issues/16208#issuecomment-161770118
 
-# Let's take a look at what rfkill's got goin on.  #If you have other connections like a wireless LAN, they might show up here. 
-rfkill list
 
-#so tell rfkill to unblock bluetooth nah
-rfkill unblock bluetooth
-# reset the adapter quick
-hciconfig hci0 reset
-#list devices and status
-hciconfig dev
+function log_info {
+	echo -e $(date '+%Y-%m-%d %T')"\e[1;32m $@\e[0m"
+}
 
-#call start espruinoHUB
+function release_bluetooth_locked {
+	#WORKAROUND TO LISTEN BLUETOOTH INSIDE CONTAINER DOCKER.
+	#Ideas:
+	#https://github.com/rtruxal
+	#https://github.com/moby/moby/issues/16208#issuecomment-161770118
+
+	# Let's take a look at what rfkill's got goin on.  #If you have other connections like a wireless LAN, they might show up here. 
+	rfkill list
+
+	#so tell rfkill to unblock bluetooth nah
+	rfkill unblock bluetooth
+	# reset the adapter quick
+	hciconfig hci0 reset
+	#list devices and status
+	hciconfig dev
+
+}
+
+function start_espruino_hub {
+	log_info "starting espruino hub"
+	./start.sh
+}
+
+function terminate_container {
+  kill ${spid}
+  stop_db2
+  if [ $pid -ne 0 ]; then
+    kill -SIGTERM "$pid"
+    wait "$pid"
+  fi
+  log_info "espruino hub stopped"
+  exit 0 # finally exit main handler script
+}
+
+trap "terminate_container"  SIGTERM
+
+log_info "Initializing container..."
+start_espruino_hub
+export pid=${!}
 while true
 do
-	echo "Executing start.sh infinite.... Press [CTRL+C] to stop..."
-	./start.sh
+	sleep 10000 &
+	export spid=${!}
+	wait $spid
 done
