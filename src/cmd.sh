@@ -11,6 +11,8 @@ function release_bluetooth_locked {
 	#Ideas:
 	#https://github.com/rtruxal
 	#https://github.com/moby/moby/issues/16208#issuecomment-161770118
+	
+	log_info "Unlocking bluetooth RPI3..."
 
 	# Let's take a look at what rfkill's got goin on.  #If you have other connections like a wireless LAN, they might show up here. 
 	rfkill list
@@ -25,7 +27,7 @@ function release_bluetooth_locked {
 }
 
 function start_espruino_hub {
-	log_info "starting espruino hub"
+	log_info "Starting espruino hub"
 	./start.sh
 }
 
@@ -43,6 +45,7 @@ function terminate_container {
 trap "terminate_container"  SIGTERM
 
 log_info "Initializing container..."
+release_bluetooth_locked
 start_espruino_hub
 export pid=${!}
 while true
