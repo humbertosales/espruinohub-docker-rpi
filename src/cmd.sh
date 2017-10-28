@@ -46,11 +46,12 @@ trap "terminate_container"  SIGTERM
 
 log_info "Initializing container..."
 release_bluetooth_locked
-start_espruino_hub
-export pid=${!}
+
 while true
 do
-	sleep 10000 &
+	start_espruino_hub
+	export pid=${!}	
+	sleep 1s &
 	export spid=${!}
 	wait $spid
 done
