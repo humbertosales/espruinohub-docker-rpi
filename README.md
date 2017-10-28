@@ -10,7 +10,7 @@ Image docker with EspruinoHub  [A BLE -> MQTT bridge for Raspberry Pi and other 
 
 ## Using docker run
 ``` 
- docker run --rm -name espruinohub --net=host --restart="always" --privileged humbertosales/espruinohub-docker-rpi
+ docker run -d --name espruinohub --net=host --restart="always" --privileged humbertosales/espruinohub-docker-rpi
 ```
 
 ## Versions
